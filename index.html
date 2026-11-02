@@ -5,74 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>महाराष्ट्र 24/7 – ताज्या मराठी बातम्या</title>
 <link rel="icon" href="favicon.png">
-<meta name="description" content="महाराष्ट्र आणि भारतातील ताज्या मराठी बातम्या आणि व्हिडिओ, २४ तास.">
+<meta name="description" content="महाराष्ट्र 24/7 – महाराष्ट्र आणि भारतातील ताज्या मराठी बातम्या आणि व्हिडिओ, २४ तास.">
+<meta property="og:title" content="महाराष्ट्र 24/7"><meta property="og:image" content="logo.png"><meta name="theme-color" content="#12306b">
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#e3dfd6;--sf:#e8680c;--bl:#12306b}
-@media(prefers-color-scheme:dark){:root{--bg:#121317;--card:#1c1e25;--tx:#f0eee8;--mu:#9a9aa5;--br:#2d303a;--bl:#0d1f45;color-scheme:dark}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:'Mukta','Noto Sans Devanagari',system-ui,sans-serif;line-height:1.5}
-header{background:var(--bl);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:26px;font-weight:800}.logo b{color:#ffb061}#up{font-size:13px;color:#cfd8f5}
-.tick{background:var(--sf);color:#fff;display:flex;overflow:hidden;white-space:nowrap}.tick span{background:#b3430a;padding:6px 12px;font-weight:800;flex:none}
-.tick div{padding:6px 0 6px 100%;animation:mv 60s linear infinite}@keyframes mv{to{transform:translateX(-100%)}}
-nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid var(--br)}
-nav button{flex:none;border:1px solid var(--br);background:var(--card);color:var(--tx);border-radius:20px;padding:5px 14px;font:inherit;cursor:pointer}
-nav button.on{background:var(--sf);color:#fff;border-color:var(--sf)}
-main{max-width:1100px;margin:0 auto;padding:16px}h2{margin:18px 0 10px;font-size:22px;border-left:5px solid var(--sf);padding-left:10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--br);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-.th{width:100%;aspect-ratio:16/9;object-fit:cover;background:linear-gradient(135deg,var(--bl),var(--sf));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;position:relative}
-.b{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}.card h3{margin:0;font-size:18px;line-height:1.35}
-.meta{font-size:13px;color:var(--mu)}.tag{background:var(--sf);color:#fff;border-radius:6px;padding:0 8px;font-size:12px;width:fit-content}
-.card a{color:#2f6df0;font-weight:600;text-decoration:none}
-.play{cursor:pointer;overflow:hidden}.play img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pb{position:relative;width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;font-size:24px}
-.empty{color:var(--mu);padding:20px;border:1px dashed var(--br);border-radius:12px;text-align:center}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}.modal.on{display:flex}
-.in{width:min(900px,100%)}.in iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#000}.in h3{color:#fff}.in a{color:#ffb061}
+:root{--bg:#f4f2ec;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#e6e2d8;--sf:#e8680c;--bl:#12306b;--gd:#ffc83d;--sh:0 2px 10px rgba(20,30,60,.08)}
+:root[data-theme="dark"]{--bg:#0f1116;--card:#1a1d25;--tx:#f0eee8;--mu:#9a9aa5;--br:#2a2e39;--sh:0 2px 12px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Mukta','Noto Sans Devanagari',system-ui,sans-serif;line-height:1.55;transition:background .3s,color .3s}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header{background:linear-gradient(120deg,#0b1f4d,#12306b 55%,#1d4a9c);color:#fff;position:relative}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--sf),var(--gd),var(--sf));background-size:200%;animation:flow 4s linear infinite}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+.lg{width:62px;height:62px;border-radius:50%;box-shadow:0 0 0 3px var(--gd),0 0 18px rgba(255,200,61,.55);animation:glow 3s ease-in-out infinite}
+.nm{font-size:clamp(24px,5.4vw,36px);font-weight:800;line-height:1.1;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.nm b{background:linear-gradient(90deg,#ffc83d,#ff8a2b,#fff1b0,#ffc83d);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 3.5s linear infinite;text-shadow:none}
+.tg{display:block;font-size:13px;font-weight:400;color:#cfd8f5;letter-spacing:.3px;margin-top:2px}
+.act{display:flex;gap:8px;align-items:center}
+#q{width:150px;border:0;border-radius:20px;padding:8px 14px;font:inherit;font-size:14px;background:rgba(255,255,255,.16);color:#fff;outline:0;transition:width .3s,background .3s}
+#q::placeholder{color:#d5dcf3}#q:focus{width:210px;background:rgba(255,255,255,.28)}
+.ib{border:0;background:rgba(255,255,255,.16);color:#fff;border-radius:50%;width:38px;height:38px;font-size:17px;cursor:pointer;transition:transform .2s,background .2s}.ib:hover{transform:rotate(20deg) scale(1.08);background:rgba(255,255,255,.3)}
+.tick{background:var(--sf);color:#fff;display:flex;overflow:hidden;white-space:nowrap}
+.tick span{background:#b3430a;padding:6px 14px;font-weight:800;flex:none;position:relative;z-index:2}
+.tick span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:7px;animation:pulse 1.2s infinite}
+.tick div{padding:6px 0 6px 100%;animation:mv 70s linear infinite}.tick:hover div{animation-play-state:paused}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--br)}
+.nv{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}.nv::-webkit-scrollbar{display:none}
+.nv button{flex:none;border:1px solid var(--br);background:var(--card);color:var(--tx);border-radius:22px;padding:5px 15px;font:inherit;cursor:pointer;transition:all .2s}
+.nv button:hover{transform:translateY(-2px);border-color:var(--sf)}
+.nv button.on{background:linear-gradient(135deg,var(--sf),#ff9a3d);color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(232,104,12,.35)}
+.nv button.ct{background:var(--bl);color:#fff;border-color:var(--bl)}.nv button.ct.on{background:linear-gradient(135deg,var(--sf),#ff9a3d)}
+main{padding:16px}h2{margin:20px 0 12px;font-size:22px;border-left:5px solid var(--sf);padding-left:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.vrow{display:grid;grid-auto-flow:column;grid-auto-columns:min(290px,82%);gap:16px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}.vrow .card{scroll-snap-align:start}
+.card{background:var(--card);border:1px solid var(--br);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);opacity:0;transform:translateY(16px);animation:up .5s ease forwards;animation-delay:calc(var(--i,0)*45ms);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 10px 26px rgba(20,30,60,.18)}
+.th{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--bl),var(--sf));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}.card:hover .th img{transform:scale(1.07)}
+.b{padding:13px;display:flex;flex-direction:column;gap:7px;flex:1}.card h3{margin:0;font-size:18px;line-height:1.35}
+.sn{color:var(--mu);font-size:15px}.meta{font-size:13px;color:var(--mu)}
+.tag{background:var(--sf);color:#fff;border-radius:6px;padding:0 9px;font-size:12px;width:fit-content}
+.ft{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:4px}
+.ft a{color:#2f6df0;font-weight:600;text-decoration:none}:root[data-theme="dark"] .ft a{color:#8fb0ff}.ft a:hover{text-decoration:underline}
+.wa{background:#25d366;color:#fff!important;border-radius:16px;padding:2px 11px;font-size:13px;font-weight:600;text-decoration:none!important}
+.hero{grid-column:span 2}.hero h3{font-size:24px}@media(max-width:620px){.hero{grid-column:auto}.hero h3{font-size:20px}}
+.play{cursor:pointer}.pb{position:relative;width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;transition:transform .2s;animation:pulse 2s infinite}.play:hover .pb{transform:scale(1.15)}
+.sk{height:300px;border-radius:14px;background:linear-gradient(100deg,var(--card) 30%,var(--br) 50%,var(--card) 70%);background-size:300% 100%;animation:flow 1.4s linear infinite}
+.empty{color:var(--mu);padding:24px;border:1px dashed var(--br);border-radius:12px;text-align:center}
+#more{display:block;margin:22px auto;background:linear-gradient(135deg,var(--sf),#ff9a3d);color:#fff;border:0;border-radius:24px;padding:11px 28px;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(232,104,12,.4);transition:transform .2s}#more:hover{transform:translateY(-2px) scale(1.03)}#more[hidden]{display:none}
+.cc{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--br);border-radius:18px;box-shadow:var(--sh);overflow:hidden;animation:up .5s ease both}
+.ch{background:linear-gradient(120deg,#0b1f4d,#1d4a9c);color:#fff;padding:22px;display:flex;align-items:center;gap:16px}.ch img{width:84px;height:84px;border-radius:50%;box-shadow:0 0 0 3px var(--gd)}
+.ch h3{margin:0;font-size:24px}.ch p{margin:2px 0 0;color:#cfd8f5}
+.cl{padding:8px 20px 20px}.cr{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--br)}
+.ci{width:44px;height:44px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.cr small{display:block;color:var(--mu);font-size:13px}.cr a,.cr span{color:var(--tx);font-weight:600;text-decoration:none;word-break:break-all}
+.bt{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.bt a{flex:1;min-width:130px;text-align:center;padding:10px;border-radius:10px;color:#fff;font-weight:700;text-decoration:none;transition:transform .2s}.bt a:hover{transform:translateY(-3px)}
+.sd{margin:18px 0 0;padding:14px;border-radius:12px;background:var(--bg);display:grid;gap:8px}
+.sd input,.sd textarea{font:inherit;padding:9px;border:1px solid var(--br);border-radius:8px;background:var(--card);color:var(--tx);width:100%}
+.sd button{background:#25d366;color:#fff;border:0;border-radius:8px;padding:10px;font:inherit;font-weight:700;cursor:pointer}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:30;padding:16px}.modal.on{display:flex;animation:fade .25s}
+.in{width:min(900px,100%)}.in iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}.in h3{color:#fff}.in a{color:#ffb061}
 .x{position:absolute;top:12px;right:16px;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer}
-button#more[hidden]{display:none}
-button#more{display:block;margin:20px auto;background:var(--sf);color:#fff;border:0;border-radius:8px;padding:10px 24px;font:inherit;font-weight:700;cursor:pointer}
-/* display fixes */.th{overflow:hidden}.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tick span{position:relative;z-index:2}
-footer{text-align:center;color:var(--mu);padding:24px 16px;font-size:14px}
+#top{position:fixed;right:16px;bottom:18px;width:46px;height:46px;border-radius:50%;border:0;background:var(--bl);color:#fff;font-size:20px;cursor:pointer;box-shadow:var(--sh);opacity:0;transform:translateY(20px);pointer-events:none;transition:all .3s;z-index:9}#top.on{opacity:1;transform:none;pointer-events:auto}
+footer{background:#0b1f4d;color:#cfd8f5;text-align:center;padding:26px 16px;font-size:14px;margin-top:30px}footer b{color:var(--gd)}footer a{color:#ffc83d}
+@keyframes up{to{opacity:1;transform:none}}@keyframes flow{to{background-position:-250% 0}}@keyframes mv{to{transform:translateX(-100%)}}
+@keyframes pulse{50%{opacity:.55;transform:scale(.92)}}@keyframes glow{50%{box-shadow:0 0 0 3px var(--gd),0 0 28px rgba(255,200,61,.9)}}@keyframes fade{from{opacity:0}}
+@media(max-width:560px){.lg{width:52px;height:52px}#q{width:44px;padding:8px;color:transparent}#q:focus{width:140px;color:#fff}.tg{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<header><a href="./" class="logo" style="display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none"><img src="logo.png" alt="महाराष्ट्र 24/7" style="height:56px;width:56px;border-radius:50%"><span>महाराष्ट्र <b>24/7</b></span></a><div id="up"></div></header>
-<div class="tick"><span>ताज्या</span><div id="tk">लोड होत आहे…</div></div>
-<nav id="nav"></nav>
-<main>
- <h2 id="vh" hidden>🎬 व्हिडिओ</h2><div class="grid" id="vg"></div>
- <h2>📰 ताज्या बातम्या</h2><div class="grid" id="ng"></div>
- <div id="em" class="empty" hidden>या विभागात सध्या बातम्या नाहीत.</div>
- <button id="more" hidden>आणखी बातम्या</button>
+<header><div class="wrap hd">
+ <a class="brand" href="#"><img class="lg" src="logo.png" alt="महाराष्ट्र 24/7"><span class="nm">महाराष्ट्र <b>24/7</b><span class="tg">ताज्या मराठी बातम्या • महाराष्ट्र ते भारत</span></span></a>
+ <div class="act"><input id="q" placeholder="🔍 शोधा" aria-label="शोधा"><button class="ib" id="thm" title="डार्क / लाइट">🌓</button></div>
+</div></header>
+<div class="tick"><span>ताज्या</span><div id="tk">बातम्या लोड होत आहेत…</div></div>
+<nav><div class="wrap nv" id="nav"></div></nav>
+<main class="wrap">
+ <section id="nv">
+  <h2 id="vh" hidden>🎬 व्हिडिओ</h2><div class="vrow" id="vg"></div>
+  <h2 id="nh">📰 ताज्या बातम्या</h2><div class="grid" id="ng"></div>
+  <div id="em" class="empty" hidden>या विभागात सध्या बातम्या नाहीत.</div>
+  <button id="more" hidden>आणखी बातम्या</button>
+ </section>
+ <section id="cv" hidden>
+  <h2>📞 संपर्क साधा</h2>
+  <div class="cc">
+   <div class="ch"><img src="logo.png" alt=""><div><h3>श्री. जयंत बडवाईक</h3><p>Mr. Jayant Badwaik · पत्रकार व संपादक</p></div></div>
+   <div class="cl">
+    <div class="cr"><div class="ci">📱</div><div><small>फोन</small><a href="tel:+919850302488">+91 98503 02488</a></div></div>
+    <div class="cr"><div class="ci">✉️</div><div><small>ईमेल</small><a href="mailto:jayantbadwaik30@gmail.com">jayantbadwaik30@gmail.com</a></div></div>
+    <div class="bt">
+     <a style="background:var(--bl)" href="tel:+919850302488">📞 कॉल करा</a>
+     <a style="background:#25d366" target="_blank" rel="noopener" href="https://wa.me/919850302488">💬 WhatsApp</a>
+     <a style="background:var(--sf)" href="mailto:jayantbadwaik30@gmail.com">✉️ ईमेल</a>
+    </div>
+    <form class="sd" id="sf"><b>📰 तुमच्या परिसरातील बातमी आम्हाला पाठवा</b>
+     <input id="sn" placeholder="तुमचे नाव"><textarea id="sm" rows="3" placeholder="बातमी / संदेश लिहा…" required></textarea>
+     <button>WhatsApp वर पाठवा</button></form>
+   </div>
+  </div>
+ </section>
 </main>
 <div class="modal" id="md"><button class="x" id="mx">✕</button><div class="in" id="mi"></div></div>
-<footer>बातम्यांचे हक्क संबंधित प्रकाशकांचे आहेत. येथे फक्त शीर्षक व थोडक्यात मजकूर दाखवला जातो; पूर्ण बातमीसाठी मूळ दुव्यावर जा.<br>© महाराष्ट्र 24/7 ™</footer>
+<button id="top" aria-label="वर जा">↑</button>
+<footer><div><b>महाराष्ट्र 24/7</b> ™ · संपादक: श्री. जयंत बडवाईक · <a href="tel:+919850302488">+91 98503 02488</a> · <a href="mailto:jayantbadwaik30@gmail.com">ईमेल</a></div>
+<div style="margin-top:6px;opacity:.8">बातम्यांचे हक्क संबंधित प्रकाशकांचे आहेत. येथे फक्त शीर्षक व थोडक्यात मजकूर दाखवला जातो; पूर्ण बातमीसाठी मूळ दुव्यावर जा.</div></footer>
 <script>
 const CATS=["सर्व","महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भंडारा","साकोली","उमरेड","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
-let cur="सर्व",items=[],shown=24;const $=i=>document.getElementById(i);
+let cur="सर्व",items=[],shown=24,view="news",term="",loaded=false;const $=i=>document.getElementById(i);
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const ok=u=>/^(https?:\/\/|uploads\/)/i.test(u||"")?u:"";
 const ago=t=>{const m=Math.max(1,Math.round((Date.now()-t)/6e4));return m<60?m+" मिनिटांपूर्वी":m<1440?Math.round(m/60)+" तासांपूर्वी":Math.round(m/1440)+" दिवसांपूर्वी"};
-function nav(){$("nav").innerHTML=CATS.map(c=>`<button class="${c===cur?"on":""}" data-c="${c}">${c}</button>`).join("")}
-$("nav").onclick=e=>{const c=e.target.dataset.c;if(c){cur=c;shown=24;nav();render()}};
-function card(n){
- const FB="this.onerror=null;this.src='logo.png';this.style.objectFit='contain';this.style.padding='10%'";
- const im=ok(n.img)?`<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="${FB}">`:"";
- const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:(im?`<div class="th">${im}</div>`:`<div class="th"><img src="logo.png" alt="" style="object-fit:contain;padding:10%"></div>`);
- return `<article class="card">${th}<div class="b"><span class="tag">${esc(n.cat)}</span><h3>${esc(n.title)}</h3>${n.summary?`<div>${esc(n.summary)}</div>`:""}<div class="meta">${esc(n.source)} · ${ago(n.ts)}</div><a href="${esc(ok(n.link))}" target="_blank" rel="noopener">संपूर्ण बातमी वाचा →</a></div></article>`}
+function nav(){$("nav").innerHTML=CATS.map(c=>`<button class="${view==="news"&&c===cur?"on":""}" data-c="${c}">${c}</button>`).join("")+`<button class="ct ${view==="contact"?"on":""}" data-c="#contact">📞 संपर्क</button>`}
+$("nav").onclick=e=>{const c=e.target.dataset.c;if(!c)return;if(c==="#contact"){location.hash="contact"}else{cur=c;shown=24;if(view!=="news")location.hash="";setView("news")}};
+function setView(v){view=v;$("nv").hidden=v!=="news";$("cv").hidden=v!=="contact";nav();render();scrollTo({top:0})}
+addEventListener("hashchange",()=>setView(location.hash==="#contact"?"contact":"news"));
+const FB="this.onerror=null;this.src='logo.png';this.style.objectFit='contain';this.style.padding='10%'";
+function card(n,i,hero){
+ const im=ok(n.img)?`<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="${FB}">`:`<img src="logo.png" alt="" style="object-fit:contain;padding:10%">`;
+ const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:`<div class="th">${im}</div>`;
+ const wa="https://wa.me/?text="+encodeURIComponent(n.title+" "+(n.link||location.href));
+ return `<article class="card ${hero?"hero":""}" style="--i:${i%12}">${th}<div class="b"><span class="tag">${esc(n.cat)}</span><h3>${esc(n.title)}</h3>${n.summary?`<div class="sn">${esc(n.summary)}</div>`:""}<div class="meta">${esc(n.source)} · ${ago(n.ts)}</div><div class="ft"><a href="${esc(ok(n.link))}" target="_blank" rel="noopener">संपूर्ण बातमी →</a><a class="wa" href="${wa}" target="_blank" rel="noopener">शेअर</a></div></div></article>`}
 function render(){
- const l=items.filter(n=>cur==="सर्व"||n.cat===cur),v=l.filter(n=>n.yt).slice(0,8),nws=l.filter(n=>!n.yt);
- $("vh").hidden=!v.length;$("vg").innerHTML=v.map(card).join("");
- $("ng").innerHTML=nws.slice(0,shown).map(card).join("");$("em").hidden=l.length>0;$("more").hidden=nws.length<=shown;$("more").textContent="आणखी बातम्या ("+Math.max(0,nws.length-shown)+")";
- $("tk").textContent=items.filter(n=>!n.yt).slice(0,10).map(n=>n.title).join("  •  ")}
+ if(view!=="news")return;
+ if(!loaded){$("ng").innerHTML='<div class="sk"></div>'.repeat(6);return}
+ const t=term.toLowerCase(),l=items.filter(n=>(cur==="सर्व"||n.cat===cur)&&(!t||(n.title+" "+n.summary).toLowerCase().includes(t))),v=l.filter(n=>n.yt).slice(0,10),nws=l.filter(n=>!n.yt);
+ $("vh").hidden=!v.length;$("vg").innerHTML=v.map((n,i)=>card(n,i)).join("");
+ $("ng").innerHTML=nws.slice(0,shown).map((n,i)=>card(n,i,i===0&&shown===24&&!t)).join("");
+ $("em").hidden=l.length>0;$("more").hidden=nws.length<=shown;$("more").textContent="आणखी बातम्या ("+Math.max(0,nws.length-shown)+")";
+ $("tk").textContent=items.filter(n=>!n.yt).slice(0,10).map(n=>n.title).join("  •  ")||"महाराष्ट्र 24/7 मध्ये आपले स्वागत आहे"}
 $("more").onclick=()=>{shown+=24;render()};
 if("IntersectionObserver" in window)new IntersectionObserver(e=>{if(e[0].isIntersecting&&!$("more").hidden)$("more").click()},{rootMargin:"300px"}).observe($("more"));
+$("q").oninput=e=>{term=e.target.value.trim();shown=24;render()};
+$("thm").onclick=()=>{const r=document.documentElement;r.dataset.theme=r.dataset.theme==="dark"?"light":"dark"};
+if(matchMedia("(prefers-color-scheme:dark)").matches)document.documentElement.dataset.theme="dark";
 document.addEventListener("click",e=>{const p=e.target.closest(".play");if(!p)return;const y=p.dataset.y;
  $("mi").innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(y)}?autoplay=1&rel=0" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe><h3>${esc(p.dataset.t)}</h3><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=${encodeURIComponent(y)}">YouTube वर पाहा</a>`;$("md").classList.add("on")});
 const cl=()=>{$("md").classList.remove("on");$("mi").innerHTML=""};$("mx").onclick=cl;$("md").onclick=e=>{if(e.target===$("md"))cl()};
-nav();
-fetch("news.json?"+Math.floor(Date.now()/9e5)).then(r=>r.json()).then(d=>{items=d.items||[];$("up").textContent="अपडेट: "+ago(d.updated);render()}).catch(()=>{$("em").hidden=false;$("em").textContent="बातम्या लोड होऊ शकल्या नाहीत."});
+$("sf").onsubmit=e=>{e.preventDefault();const t="नमस्कार, महाराष्ट्र 24/7 साठी बातमी:\n"+$("sm").value+($("sn").value?"\n- "+$("sn").value:"");open("https://wa.me/919850302488?text="+encodeURIComponent(t),"_blank")};
+addEventListener("scroll",()=>$("top").classList.toggle("on",scrollY>600),{passive:true});$("top").onclick=()=>scrollTo({top:0});
+view=location.hash==="#contact"?"contact":"news";$("nv").hidden=view!=="news";$("cv").hidden=view!=="contact";nav();render();
+fetch("news.json?"+Math.floor(Date.now()/9e5)).then(r=>r.json()).then(d=>{items=d.items||[];loaded=true;render()}).catch(()=>{loaded=true;items=[];render();$("em").hidden=false;$("em").textContent="बातम्या लोड होऊ शकल्या नाहीत."});
 </script>
 </body>
 </html>
