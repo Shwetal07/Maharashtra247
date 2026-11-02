@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>महाराष्ट्र २४/७ – ताज्या मराठी बातम्या</title>
+<title>महाराष्ट्र 24/7 – ताज्या मराठी बातम्या</title>
+<link rel="icon" href="favicon.png">
 <meta name="description" content="महाराष्ट्र आणि भारतातील ताज्या मराठी बातम्या आणि व्हिडिओ, २४ तास.">
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -30,14 +31,12 @@ main{max-width:1100px;margin:0 auto;padding:16px}h2{margin:18px 0 10px;font-size
 .in{width:min(900px,100%)}.in iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#000}.in h3{color:#fff}.in a{color:#ffb061}
 .x{position:absolute;top:12px;right:16px;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer}
 button#more{display:block;margin:20px auto;background:var(--sf);color:#fff;border:0;border-radius:8px;padding:10px 24px;font:inherit;font-weight:700;cursor:pointer}
-.th{overflow:hidden}
-.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tick span{position:relative;z-index:2}
- footer{text-align:center;color:var(--mu);padding:24px 16px;font-size:14px}
+/* display fixes */.th{overflow:hidden}.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tick span{position:relative;z-index:2}
+footer{text-align:center;color:var(--mu);padding:24px 16px;font-size:14px}
 </style>
 </head>
 <body>
-<header><div class="logo">महाराष्ट्र <b>२४/७</b></div><div id="up"></div></header>
+<header><a href="./" class="logo" style="display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none"><img src="logo.png" alt="महाराष्ट्र 24/7" style="height:56px;width:56px;border-radius:50%"><span>महाराष्ट्र <b>24/7</b></span></a><div id="up"></div></header>
 <div class="tick"><span>ताज्या</span><div id="tk">लोड होत आहे…</div></div>
 <nav id="nav"></nav>
 <main>
@@ -47,7 +46,7 @@ button#more{display:block;margin:20px auto;background:var(--sf);color:#fff;borde
  <button id="more" hidden>आणखी बातम्या</button>
 </main>
 <div class="modal" id="md"><button class="x" id="mx">✕</button><div class="in" id="mi"></div></div>
-<footer>बातम्यांचे हक्क संबंधित प्रकाशकांचे आहेत. येथे फक्त शीर्षक व थोडक्यात मजकूर दाखवला जातो; पूर्ण बातमीसाठी मूळ दुव्यावर जा.<br>© महाराष्ट्र २४/७ ™</footer>
+<footer>बातम्यांचे हक्क संबंधित प्रकाशकांचे आहेत. येथे फक्त शीर्षक व थोडक्यात मजकूर दाखवला जातो; पूर्ण बातमीसाठी मूळ दुव्यावर जा.<br>© महाराष्ट्र 24/7 ™</footer>
 <script>
 const CATS=["सर्व","महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
 let cur="सर्व",items=[],shown=24;const $=i=>document.getElementById(i);
@@ -58,7 +57,7 @@ function nav(){$("nav").innerHTML=CATS.map(c=>`<button class="${c===cur?"on":""}
 $("nav").onclick=e=>{const c=e.target.dataset.c;if(c){cur=c;shown=24;nav();render()}};
 function card(n){
  const im=ok(n.img)?`<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:"";
- const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:(im?`<div class="th">${im}</div>`:`<div class="th">महाराष्ट्र २४/७</div>`);
+ const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:(im?`<div class="th">${im}</div>`:`<div class="th">महाराष्ट्र 24/7</div>`);
  return `<article class="card">${th}<div class="b"><span class="tag">${esc(n.cat)}</span><h3>${esc(n.title)}</h3>${n.summary?`<div>${esc(n.summary)}</div>`:""}<div class="meta">${esc(n.source)} · ${ago(n.ts)}</div><a href="${esc(ok(n.link))}" target="_blank" rel="noopener">संपूर्ण बातमी वाचा →</a></div></article>`}
 function render(){
  const l=items.filter(n=>cur==="सर्व"||n.cat===cur),v=l.filter(n=>n.yt).slice(0,8),nws=l.filter(n=>!n.yt);

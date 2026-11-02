@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="mr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><title>Admin – महाराष्ट्र २४/७</title>
+<meta name="robots" content="noindex,nofollow"><title>Admin – महाराष्ट्र 24/7</title>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f6f4ef;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#e3dfd6;--sf:#e8680c}
@@ -14,7 +14,7 @@ button{background:var(--sf);color:#fff;border:0;border-radius:8px;padding:10px;f
 .note{font-size:13px;color:var(--mu)}.item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--br);padding:8px 0}
 .item button{background:none;color:#c0392b;padding:0 6px}
 </style></head><body><main>
-<h1>🔐 महाराष्ट्र २४/७ – Admin</h1>
+<h1>🔐 महाराष्ट्र 24/7 – Admin</h1>
 <div class="box">
   <input id="repo" placeholder="GitHub repo, e.g. myname/maharashtra247">
   <input id="tok" type="password" placeholder="GitHub token (stays only in this browser)">
@@ -64,7 +64,7 @@ $("f").onsubmit=async e=>{e.preventDefault();const b=$("go"),g=$("msg");b.disabl
       img="uploads/"+Date.now()+"-"+file.name.replace(/[^\w.-]/g,"_");
       await gh(img,{method:"PUT",body:JSON.stringify({message:"upload image",content:b64})})}
     const y=ytId($("yt").value);
-    const item={id:"m"+Date.now(),title:$("t").value.trim(),summary:$("s").value.trim(),cat:$("c").value,source:$("src").value.trim()||"महाराष्ट्र २४/७",link:$("u").value.trim(),img,ts:Date.now()};
+    const item={id:"m"+Date.now(),title:$("t").value.trim(),summary:$("s").value.trim(),cat:$("c").value,source:$("src").value.trim()||"महाराष्ट्र 24/7",link:$("u").value.trim(),img,ts:Date.now()};
     if(y){item.yt=y;item.img=item.img||"https://i.ytimg.com/vi/"+y+"/hqdefault.jpg"}
     if(!item.link&&!y)item.link=location.origin+location.pathname.replace(/admin\.html$/,"");
     const m=await getManual();await putManual([item,...m.items],m.sha,"add story");
