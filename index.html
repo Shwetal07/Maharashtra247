@@ -30,6 +30,7 @@ main{max-width:1100px;margin:0 auto;padding:16px}h2{margin:18px 0 10px;font-size
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}.modal.on{display:flex}
 .in{width:min(900px,100%)}.in iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#000}.in h3{color:#fff}.in a{color:#ffb061}
 .x{position:absolute;top:12px;right:16px;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer}
+button#more[hidden]{display:none}
 button#more{display:block;margin:20px auto;background:var(--sf);color:#fff;border:0;border-radius:8px;padding:10px 24px;font:inherit;font-weight:700;cursor:pointer}
 /* display fixes */.th{overflow:hidden}.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tick span{position:relative;z-index:2}
 footer{text-align:center;color:var(--mu);padding:24px 16px;font-size:14px}
@@ -63,9 +64,10 @@ function card(n){
 function render(){
  const l=items.filter(n=>cur==="सर्व"||n.cat===cur),v=l.filter(n=>n.yt).slice(0,8),nws=l.filter(n=>!n.yt);
  $("vh").hidden=!v.length;$("vg").innerHTML=v.map(card).join("");
- $("ng").innerHTML=nws.slice(0,shown).map(card).join("");$("em").hidden=l.length>0;$("more").hidden=nws.length<=shown;
+ $("ng").innerHTML=nws.slice(0,shown).map(card).join("");$("em").hidden=l.length>0;$("more").hidden=nws.length<=shown;$("more").textContent="आणखी बातम्या ("+Math.max(0,nws.length-shown)+")";
  $("tk").textContent=items.filter(n=>!n.yt).slice(0,10).map(n=>n.title).join("  •  ")}
 $("more").onclick=()=>{shown+=24;render()};
+if("IntersectionObserver" in window)new IntersectionObserver(e=>{if(e[0].isIntersecting&&!$("more").hidden)$("more").click()},{rootMargin:"300px"}).observe($("more"));
 document.addEventListener("click",e=>{const p=e.target.closest(".play");if(!p)return;const y=p.dataset.y;
  $("mi").innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(y)}?autoplay=1&rel=0" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe><h3>${esc(p.dataset.t)}</h3><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=${encodeURIComponent(y)}">YouTube वर पाहा</a>`;$("md").classList.add("on")});
 const cl=()=>{$("md").classList.remove("on");$("mi").innerHTML=""};$("mx").onclick=cl;$("md").onclick=e=>{if(e.target===$("md"))cl()};

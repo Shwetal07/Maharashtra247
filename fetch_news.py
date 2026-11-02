@@ -10,7 +10,7 @@ socket.setdefaulttimeout(20)
 feedparser.USER_AGENT = 'Mozilla/5.0 (compatible; Maharashtra247Bot/1.0)'
 
 ROOT = Path(__file__).parent
-MAX_ITEMS, SNIPPET = 300, 200
+MAX_ITEMS, SNIPPET, KEEP_DAYS = 600, 200, 14
 KEYWORDS = {  # first match wins, order matters
  "क्रीडा": ["क्रिकेट", "सामना", "आयपीएल", "खेळाडू", "फुटबॉल", "ऑलिम्पिक", "कबड्डी"],
  "मनोरंजन": ["चित्रपट", "अभिनेत", "अभिनेत्री", "बॉलिवूड", "मालिका", "सिनेमा"],
@@ -105,6 +105,17 @@ def run():
             items.append(it)
     mp = ROOT / "manual.json"  # your own stories, same fields as above
     if mp.exists(): items += json.loads(mp.read_text(encoding="utf-8"))
+    # keep older stories from earlier runs (so the list grows and "load more" has content)
+    pj = ROOT / "news.json"
+    if pj.exists():
+        try:
+            have = {i["id"] for i in items} | {re.sub(r"\W+", "", i["title"].lower())[:80] for i in items}
+            cutoff = (time.time() - KEEP_DAYS * 86400) * 1000
+            for old in json.loads(pj.read_text(encoding="utf-8"))["items"]:
+                k = re.sub(r"\W+", "", old["title"].lower())[:80]
+                if old["id"].startswith("m") or old["ts"] < cutoff or old["id"] in have or k in have: continue
+                items.append(old); have.add(old["id"]); have.add(k)
+        except Exception as ex: print("WARN could not merge old news:", ex)
     items.sort(key=lambda x: x["ts"], reverse=True)
     fill_images(items[:MAX_ITEMS])
     forced = {f["cat"] for f in load_feeds() if f.get("force")}
