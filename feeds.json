@@ -1,0 +1,68 @@
+{
+  "_help": "Add or remove feeds here. type: news or video. cat = default category. enabled:false skips a feed. Test all: python fetch_news.py --check. A feed that fails is skipped with a warning (it never breaks the site).",
+  "feeds": [
+    {
+      "name": "Google News – महाराष्ट्र",
+      "type": "news",
+      "cat": "महाराष्ट्र",
+      "enabled": true,
+      "url": "https://news.google.com/rss/search?q=%E0%A4%AE%E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%B7%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0&hl=mr&gl=IN&ceid=IN:mr"
+    },
+    {
+      "name": "Google News – भारत",
+      "type": "news",
+      "cat": "भारत",
+      "enabled": true,
+      "url": "https://news.google.com/rss/search?q=%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4&hl=mr&gl=IN&ceid=IN:mr"
+    },
+    {
+      "name": "Google News – नाशिक",
+      "type": "news",
+      "cat": "नाशिक",
+      "enabled": true,
+      "url": "https://news.google.com/rss/search?q=%E0%A4%A8%E0%A4%BE%E0%A4%B6%E0%A4%BF%E0%A4%95&hl=mr&gl=IN&ceid=IN:mr"
+    },
+    {
+      "name": "Maharashtra Times",
+      "type": "news",
+      "cat": "महाराष्ट्र",
+      "enabled": true,
+      "url": "https://maharashtratimes.com/rssfeedsdefault.cms"
+    },
+    {
+      "name": "Loksatta (देश-विदेश)",
+      "type": "news",
+      "cat": "भारत",
+      "enabled": true,
+      "url": "https://www.loksatta.com/desh-videsh/feed/"
+    },
+    {
+      "name": "News18 Lokmat",
+      "type": "news",
+      "cat": "महाराष्ट्र",
+      "enabled": true,
+      "url": "https://lokmat.news18.com/rss/program.xml"
+    },
+    {
+      "name": "Lokmat (क्रीडा)",
+      "type": "news",
+      "cat": "क्रीडा",
+      "enabled": true,
+      "url": "https://www.lokmat.com/rss/sports.xml"
+    },
+    {
+      "name": "Loksawal",
+      "type": "news",
+      "cat": "महाराष्ट्र",
+      "enabled": true,
+      "url": "https://www.loksawal.com/rss/latest-posts"
+    },
+    {
+      "name": "YouTube channel (put real channel_id)",
+      "type": "video",
+      "cat": "महाराष्ट्र",
+      "enabled": false,
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=PUT_CHANNEL_ID_HERE"
+    }
+  ]
+}

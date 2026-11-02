@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>महाराष्ट्र २४/७ – ताज्या मराठी बातम्या</title>
+<meta name="description" content="महाराष्ट्र आणि भारतातील ताज्या मराठी बातम्या आणि व्हिडिओ, २४ तास.">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#e3dfd6;--sf:#e8680c;--bl:#12306b}
+@media(prefers-color-scheme:dark){:root{--bg:#121317;--card:#1c1e25;--tx:#f0eee8;--mu:#9a9aa5;--br:#2d303a;--bl:#0d1f45;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:'Mukta','Noto Sans Devanagari',system-ui,sans-serif;line-height:1.5}
+header{background:var(--bl);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:800}.logo b{color:#ffb061}#up{font-size:13px;color:#cfd8f5}
+.tick{background:var(--sf);color:#fff;display:flex;overflow:hidden;white-space:nowrap}.tick span{background:#b3430a;padding:6px 12px;font-weight:800;flex:none}
+.tick div{padding:6px 0 6px 100%;animation:mv 60s linear infinite}@keyframes mv{to{transform:translateX(-100%)}}
+nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid var(--br)}
+nav button{flex:none;border:1px solid var(--br);background:var(--card);color:var(--tx);border-radius:20px;padding:5px 14px;font:inherit;cursor:pointer}
+nav button.on{background:var(--sf);color:#fff;border-color:var(--sf)}
+main{max-width:1100px;margin:0 auto;padding:16px}h2{margin:18px 0 10px;font-size:22px;border-left:5px solid var(--sf);padding-left:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--br);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.th{width:100%;aspect-ratio:16/9;object-fit:cover;background:linear-gradient(135deg,var(--bl),var(--sf));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;position:relative}
+.b{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}.card h3{margin:0;font-size:18px;line-height:1.35}
+.meta{font-size:13px;color:var(--mu)}.tag{background:var(--sf);color:#fff;border-radius:6px;padding:0 8px;font-size:12px;width:fit-content}
+.card a{color:#2f6df0;font-weight:600;text-decoration:none}
+.play{cursor:pointer;overflow:hidden}.play img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pb{position:relative;width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;font-size:24px}
+.empty{color:var(--mu);padding:20px;border:1px dashed var(--br);border-radius:12px;text-align:center}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}.modal.on{display:flex}
+.in{width:min(900px,100%)}.in iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#000}.in h3{color:#fff}.in a{color:#ffb061}
+.x{position:absolute;top:12px;right:16px;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer}
+button#more{display:block;margin:20px auto;background:var(--sf);color:#fff;border:0;border-radius:8px;padding:10px 24px;font:inherit;font-weight:700;cursor:pointer}
+footer{text-align:center;color:var(--mu);padding:24px 16px;font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="logo">महाराष्ट्र <b>२४/७</b></div><div id="up"></div></header>
+<div class="tick"><span>ताज्या</span><div id="tk">लोड होत आहे…</div></div>
+<nav id="nav"></nav>
+<main>
+ <h2 id="vh" hidden>🎬 व्हिडिओ</h2><div class="grid" id="vg"></div>
+ <h2>📰 ताज्या बातम्या</h2><div class="grid" id="ng"></div>
+ <div id="em" class="empty" hidden>या विभागात सध्या बातम्या नाहीत.</div>
+ <button id="more" hidden>आणखी बातम्या</button>
+</main>
+<div class="modal" id="md"><button class="x" id="mx">✕</button><div class="in" id="mi"></div></div>
+<footer>बातम्यांचे हक्क संबंधित प्रकाशकांचे आहेत. येथे फक्त शीर्षक व थोडक्यात मजकूर दाखवला जातो; पूर्ण बातमीसाठी मूळ दुव्यावर जा.<br>© महाराष्ट्र २४/७ ™</footer>
+<script>
+const CATS=["सर्व","महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
+let cur="सर्व",items=[],shown=24;const $=i=>document.getElementById(i);
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const ok=u=>/^(https?:\/\/|uploads\/)/i.test(u||"")?u:"";
+const ago=t=>{const m=Math.max(1,Math.round((Date.now()-t)/6e4));return m<60?m+" मिनिटांपूर्वी":m<1440?Math.round(m/60)+" तासांपूर्वी":Math.round(m/1440)+" दिवसांपूर्वी"};
+function nav(){$("nav").innerHTML=CATS.map(c=>`<button class="${c===cur?"on":""}" data-c="${c}">${c}</button>`).join("")}
+$("nav").onclick=e=>{const c=e.target.dataset.c;if(c){cur=c;shown=24;nav();render()}};
+function card(n){
+ const im=ok(n.img)?`<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:"";
+ const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:(im?`<div class="th">${im}</div>`:`<div class="th">महाराष्ट्र २४/७</div>`);
+ return `<article class="card">${th}<div class="b"><span class="tag">${esc(n.cat)}</span><h3>${esc(n.title)}</h3>${n.summary?`<div>${esc(n.summary)}</div>`:""}<div class="meta">${esc(n.source)} · ${ago(n.ts)}</div><a href="${esc(ok(n.link))}" target="_blank" rel="noopener">संपूर्ण बातमी वाचा →</a></div></article>`}
+function render(){
+ const l=items.filter(n=>cur==="सर्व"||n.cat===cur),v=l.filter(n=>n.yt).slice(0,8),nws=l.filter(n=>!n.yt);
+ $("vh").hidden=!v.length;$("vg").innerHTML=v.map(card).join("");
+ $("ng").innerHTML=nws.slice(0,shown).map(card).join("");$("em").hidden=l.length>0;$("more").hidden=nws.length<=shown;
+ $("tk").textContent=items.filter(n=>!n.yt).slice(0,10).map(n=>n.title).join("  •  ")}
+$("more").onclick=()=>{shown+=24;render()};
+document.addEventListener("click",e=>{const p=e.target.closest(".play");if(!p)return;const y=p.dataset.y;
+ $("mi").innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(y)}?autoplay=1&rel=0" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe><h3>${esc(p.dataset.t)}</h3><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=${encodeURIComponent(y)}">YouTube वर पाहा</a>`;$("md").classList.add("on")});
+const cl=()=>{$("md").classList.remove("on");$("mi").innerHTML=""};$("mx").onclick=cl;$("md").onclick=e=>{if(e.target===$("md"))cl()};
+nav();
+fetch("news.json?"+Math.floor(Date.now()/9e5)).then(r=>r.json()).then(d=>{items=d.items||[];$("up").textContent="अपडेट: "+ago(d.updated);render()}).catch(()=>{$("em").hidden=false;$("em").textContent="बातम्या लोड होऊ शकल्या नाहीत."});
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="mr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Admin – महाराष्ट्र २४/७</title>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#e3dfd6;--sf:#e8680c}
+@media(prefers-color-scheme:dark){:root{--bg:#121317;--card:#1c1e25;--tx:#f0eee8;--mu:#9a9aa5;--br:#2d303a;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:'Mukta',system-ui,sans-serif;line-height:1.5}
+main{max-width:720px;margin:0 auto;padding:16px}h1{font-size:24px}h2{font-size:19px;margin-top:26px}
+.box{background:var(--card);border:1px solid var(--br);border-radius:12px;padding:14px;display:grid;gap:10px}
+input,textarea,select{font:inherit;padding:8px;border:1px solid var(--br);border-radius:8px;background:var(--bg);color:var(--tx);width:100%}
+button{background:var(--sf);color:#fff;border:0;border-radius:8px;padding:10px;font:inherit;font-weight:700;cursor:pointer}button:disabled{opacity:.5}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.row{grid-template-columns:1fr}}
+.note{font-size:13px;color:var(--mu)}.item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--br);padding:8px 0}
+.item button{background:none;color:#c0392b;padding:0 6px}
+</style></head><body><main>
+<h1>🔐 महाराष्ट्र २४/७ – Admin</h1>
+<div class="box">
+  <input id="repo" placeholder="GitHub repo, e.g. myname/maharashtra247">
+  <input id="tok" type="password" placeholder="GitHub token (stays only in this browser)">
+  <button id="save">सेव्ह करा</button>
+  <div class="note">Token: GitHub → Settings → Developer settings → Fine-grained tokens → only this repository → Permissions: Contents = Read and write.</div>
+</div>
+<h2>＋ नवीन बातमी / व्हिडिओ</h2>
+<form class="box" id="f">
+  <input id="t" placeholder="शीर्षक *" required>
+  <textarea id="s" rows="3" placeholder="थोडक्यात मजकूर"></textarea>
+  <div class="row"><select id="c"></select><input id="src" placeholder="स्रोत (उदा. आपला रिपोर्टर)"></div>
+  <input id="u" placeholder="मूळ बातमीची लिंक (ऐच्छिक)">
+  <input id="yt" placeholder="YouTube व्हिडिओ लिंक (ऐच्छिक)">
+  <label class="note">फोटो (ऐच्छिक, 2 MB पर्यंत): <input id="im" type="file" accept="image/*"></label>
+  <button id="go">प्रसिद्ध करा</button><div id="msg" class="note"></div>
+</form>
+<h2>तुमच्या प्रसिद्ध केलेल्या बातम्या</h2>
+<div class="box" id="list">लोड होत आहे…</div>
+<p class="note">प्रसिद्ध केल्यानंतर साइटवर दिसायला साधारण १–२ मिनिटे लागतात.</p>
+</main>
+<script>
+const CATS=["महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
+const $=i=>document.getElementById(i),API="https://api.github.com/repos/";
+$("c").innerHTML=CATS.map(c=>`<option>${c}</option>`).join("");
+const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+let sav={};try{sav=JSON.parse(localStorage.getItem("m247")||"{}")}catch(e){}
+$("repo").value=sav.repo||"";$("tok").value=sav.tok||"";
+$("save").onclick=()=>{try{localStorage.setItem("m247",JSON.stringify({repo:$("repo").value.trim(),tok:$("tok").value.trim()}))}catch(e){}load()};
+const H=()=>({Authorization:"Bearer "+$("tok").value.trim(),Accept:"application/vnd.github+json"});
+const enc=s=>btoa(unescape(encodeURIComponent(s))),dec=s=>decodeURIComponent(escape(atob(s.replace(/\n/g,""))));
+const ytId=u=>{const m=String(u||"").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:""};
+async function gh(path,opt){const r=await fetch(API+$("repo").value.trim()+"/contents/"+path,{...opt,headers:{...H(),...(opt&&opt.headers)}});
+  if(r.status===404)return null;if(!r.ok)throw new Error("GitHub "+r.status+": "+((await r.json().catch(()=>({}))).message||""));return r.json()}
+async function getManual(){const f=await gh("manual.json");return f?{sha:f.sha,items:JSON.parse(dec(f.content)||"[]")}:{sha:undefined,items:[]}}
+async function putManual(items,sha,msg){await gh("manual.json",{method:"PUT",body:JSON.stringify({message:msg,content:enc(JSON.stringify(items,null,1)),sha})})}
+async function load(){
+  if(!$("repo").value||!$("tok").value){$("list").textContent="वर repo आणि token टाका.";return}
+  try{const m=await getManual();$("list").innerHTML=m.items.length?m.items.map(n=>`<div class="item"><span>${esc(n.title)}</span><button data-d="${esc(n.id)}">🗑</button></div>`).join(""):"अजून काही नाही.";}
+  catch(e){$("list").textContent="त्रुटी: "+e.message}}
+$("list").onclick=async e=>{const d=e.target.dataset.d;if(!d||!confirm("ही बातमी काढायची?"))return;
+  try{const m=await getManual();await putManual(m.items.filter(n=>n.id!==d),m.sha,"remove story");load()}catch(x){alert(x.message)}};
+$("f").onsubmit=async e=>{e.preventDefault();const b=$("go"),g=$("msg");b.disabled=true;g.textContent="प्रसिद्ध होत आहे…";
+  try{
+    let img="";const file=$("im").files[0];
+    if(file){if(file.size>2e6)throw new Error("फोटो 2 MB पेक्षा मोठा आहे");
+      const b64=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(",")[1]);fr.readAsDataURL(file)});
+      img="uploads/"+Date.now()+"-"+file.name.replace(/[^\w.-]/g,"_");
+      await gh(img,{method:"PUT",body:JSON.stringify({message:"upload image",content:b64})})}
+    const y=ytId($("yt").value);
+    const item={id:"m"+Date.now(),title:$("t").value.trim(),summary:$("s").value.trim(),cat:$("c").value,source:$("src").value.trim()||"महाराष्ट्र २४/७",link:$("u").value.trim(),img,ts:Date.now()};
+    if(y){item.yt=y;item.img=item.img||"https://i.ytimg.com/vi/"+y+"/hqdefault.jpg"}
+    if(!item.link&&!y)item.link=location.origin+location.pathname.replace(/admin\.html$/,"");
+    const m=await getManual();await putManual([item,...m.items],m.sha,"add story");
+    $("f").reset();g.textContent="✔ प्रसिद्ध झाले. १–२ मिनिटांत साइटवर दिसेल.";load();
+  }catch(x){g.textContent="त्रुटी: "+x.message}b.disabled=false};
+load();
+</script></body></html>
