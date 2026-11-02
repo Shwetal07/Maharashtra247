@@ -48,7 +48,7 @@ footer{text-align:center;color:var(--mu);padding:24px 16px;font-size:14px}
 <div class="modal" id="md"><button class="x" id="mx">✕</button><div class="in" id="mi"></div></div>
 <footer>बातम्यांचे हक्क संबंधित प्रकाशकांचे आहेत. येथे फक्त शीर्षक व थोडक्यात मजकूर दाखवला जातो; पूर्ण बातमीसाठी मूळ दुव्यावर जा.<br>© महाराष्ट्र 24/7 ™</footer>
 <script>
-const CATS=["सर्व","महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
+const CATS=["सर्व","महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भंडारा","साकोली","उमरेड","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
 let cur="सर्व",items=[],shown=24;const $=i=>document.getElementById(i);
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const ok=u=>/^(https?:\/\/|uploads\/)/i.test(u||"")?u:"";
@@ -56,8 +56,9 @@ const ago=t=>{const m=Math.max(1,Math.round((Date.now()-t)/6e4));return m<60?m+"
 function nav(){$("nav").innerHTML=CATS.map(c=>`<button class="${c===cur?"on":""}" data-c="${c}">${c}</button>`).join("")}
 $("nav").onclick=e=>{const c=e.target.dataset.c;if(c){cur=c;shown=24;nav();render()}};
 function card(n){
- const im=ok(n.img)?`<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:"";
- const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:(im?`<div class="th">${im}</div>`:`<div class="th">महाराष्ट्र 24/7</div>`);
+ const FB="this.onerror=null;this.src='logo.png';this.style.objectFit='contain';this.style.padding='10%'";
+ const im=ok(n.img)?`<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="${FB}">`:"";
+ const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:(im?`<div class="th">${im}</div>`:`<div class="th"><img src="logo.png" alt="" style="object-fit:contain;padding:10%"></div>`);
  return `<article class="card">${th}<div class="b"><span class="tag">${esc(n.cat)}</span><h3>${esc(n.title)}</h3>${n.summary?`<div>${esc(n.summary)}</div>`:""}<div class="meta">${esc(n.source)} · ${ago(n.ts)}</div><a href="${esc(ok(n.link))}" target="_blank" rel="noopener">संपूर्ण बातमी वाचा →</a></div></article>`}
 function render(){
  const l=items.filter(n=>cur==="सर्व"||n.cat===cur),v=l.filter(n=>n.yt).slice(0,8),nws=l.filter(n=>!n.yt);
