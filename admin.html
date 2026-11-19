@@ -1,74 +1,97 @@
 <!DOCTYPE html>
-<html lang="mr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><title>Admin – महाराष्ट्र 24/7</title>
+<html lang="mr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#12306b"><link rel="manifest" href="admin-manifest.webmanifest"><link rel="icon" href="favicon.png">
+<title>बातमी अपलोड – महाराष्ट्र 24/7</title>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#e3dfd6;--sf:#e8680c}
-@media(prefers-color-scheme:dark){:root{--bg:#121317;--card:#1c1e25;--tx:#f0eee8;--mu:#9a9aa5;--br:#2d303a;color-scheme:dark}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:'Mukta',system-ui,sans-serif;line-height:1.5}
-main{max-width:720px;margin:0 auto;padding:16px}h1{font-size:24px}h2{font-size:19px;margin-top:26px}
-.box{background:var(--card);border:1px solid var(--br);border-radius:12px;padding:14px;display:grid;gap:10px}
-input,textarea,select{font:inherit;padding:8px;border:1px solid var(--br);border-radius:8px;background:var(--bg);color:var(--tx);width:100%}
-button{background:var(--sf);color:#fff;border:0;border-radius:8px;padding:10px;font:inherit;font-weight:700;cursor:pointer}button:disabled{opacity:.5}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.row{grid-template-columns:1fr}}
-.note{font-size:13px;color:var(--mu)}.item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--br);padding:8px 0}
-.item button{background:none;color:#c0392b;padding:0 6px}
-</style></head><body><main>
-<h1>🔐 महाराष्ट्र 24/7 – Admin</h1>
-<div class="box">
-  <input id="repo" placeholder="GitHub repo, e.g. myname/maharashtra247">
-  <input id="tok" type="password" placeholder="GitHub token (stays only in this browser)">
-  <button id="save">सेव्ह करा</button>
-  <div class="note">Token: GitHub → Settings → Developer settings → Fine-grained tokens → only this repository → Permissions: Contents = Read and write.</div>
-</div>
-<h2>＋ नवीन बातमी / व्हिडिओ</h2>
-<form class="box" id="f">
-  <input id="t" placeholder="शीर्षक *" required>
-  <textarea id="s" rows="3" placeholder="थोडक्यात मजकूर"></textarea>
-  <div class="row"><select id="c"></select><input id="src" placeholder="स्रोत (उदा. आपला रिपोर्टर)"></div>
-  <input id="u" placeholder="मूळ बातमीची लिंक (ऐच्छिक)">
-  <input id="yt" placeholder="YouTube व्हिडिओ लिंक (ऐच्छिक)">
-  <label class="note">फोटो (ऐच्छिक, 2 MB पर्यंत): <input id="im" type="file" accept="image/*"></label>
-  <button id="go">प्रसिद्ध करा</button><div id="msg" class="note"></div>
+:root{--bg:#f4f2ec;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#dcd7ca;--sf:#e8680c;--bl:#12306b}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1116;--card:#1a1d25;--tx:#f0eee8;--mu:#9a9aa5;--br:#2a2e39;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.5 'Mukta',system-ui,sans-serif}
+header{background:linear-gradient(120deg,#0b1f4d,#1d4a9c);color:#fff;padding:12px 16px;display:flex;gap:12px;align-items:center}header img{width:46px;height:46px;border-radius:50%}header b{font-size:20px}
+main{max-width:640px;margin:0 auto;padding:14px 14px 90px}h2{font-size:19px;margin:22px 0 8px}
+.box{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px;display:grid;gap:12px}
+label{font-weight:600;font-size:15px;display:grid;gap:5px}
+input,textarea,select{font:inherit;font-size:17px;padding:12px;border:1px solid var(--br);border-radius:10px;background:var(--bg);color:var(--tx);width:100%}
+.pick{display:flex;gap:8px;flex-wrap:wrap}.pick label{flex:1;min-width:140px;position:relative;background:var(--bg);border:2px dashed var(--br);border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer}
+.pick input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.pv{display:flex;gap:8px;flex-wrap:wrap}.pv img{width:84px;height:84px;object-fit:cover;border-radius:10px}
+button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:14px;background:var(--sf);color:#fff;cursor:pointer;width:100%;font-size:18px}button:disabled{opacity:.5}
+.note{font-size:14px;color:var(--mu)}#msg{font-weight:600}.ok{color:#1a9b4b}.er{color:#d33}
+.item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--br);padding:10px 0;align-items:center}.item a{color:var(--bl);font-weight:600}
+.item button{background:none;color:#d33;width:auto;padding:6px 10px;font-size:20px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--br);padding:10px 14px}.bar button{max-width:640px;display:block;margin:0 auto}
+details summary{cursor:pointer;font-weight:600}
+</style></head><body>
+<header><img src="logo.png" alt=""><div><b>बातमी अपलोड</b><br><small>महाराष्ट्र 24/7 · फक्त संपादकांसाठी</small></div></header>
+<main>
+<details id="setup"><summary>⚙️ पहिल्यांदा सेटअप (एकदाच)</summary>
+<div class="box" style="margin-top:8px">
+ <label>GitHub repo<input id="repo" value="Shwetal07/Maharashtra247" autocapitalize="off"></label>
+ <label>GitHub token<input id="tok" type="password" placeholder="github_pat_…" autocapitalize="off"></label>
+ <button id="save" type="button" style="background:var(--bl)">सेव्ह करा</button>
+ <div class="note">Token फक्त याच फोनच्या ब्राउझरमध्ये राहतो. कोणालाही देऊ नका.</div></div></details>
+
+<h2>✍️ नवी बातमी</h2>
+<form id="f" class="box">
+ <label>शीर्षक *<input id="t" required placeholder="बातमीचे शीर्षक"></label>
+ <label>श्रेणी / गाव<select id="c"></select></label>
+ <label>संपूर्ण बातमी *<textarea id="b" rows="9" required placeholder="येथे संपूर्ण बातमी लिहा…"></textarea></label>
+ <label>बातमीदाराचे नाव<input id="src" placeholder="उदा. जयंत बडवाईक"></label>
+ <div class="pick">
+  <label>📷 मुख्य फोटो<input id="im" type="file" accept="image/*"></label>
+  <label>🖼 आणखी फोटो<input id="ex" type="file" accept="image/*" multiple></label>
+ </div><div class="pv" id="pv"></div>
+ <label>YouTube व्हिडिओ लिंक (ऐच्छिक)<input id="yt" inputmode="url" placeholder="https://youtu.be/…"></label>
+ <div id="msg" class="note"></div>
 </form>
-<h2>तुमच्या प्रसिद्ध केलेल्या बातम्या</h2>
-<div class="box" id="list">लोड होत आहे…</div>
-<p class="note">प्रसिद्ध केल्यानंतर साइटवर दिसायला साधारण १–२ मिनिटे लागतात.</p>
+<h2>तुमच्या बातम्या</h2><div class="box" id="list">लोड होत आहे…</div>
 </main>
+<div class="bar"><button id="go" form="f">📤 प्रसिद्ध करा</button></div>
 <script>
-const CATS=["महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
+const CATS=["महाराष्ट्र","मुंबई","पुणे","नाशिक","नागपूर","भंडारा","साकोली","उमरेड","भारत","राजकारण","क्राईम","क्रीडा","मनोरंजन","व्यवसाय"];
 const $=i=>document.getElementById(i),API="https://api.github.com/repos/";
 $("c").innerHTML=CATS.map(c=>`<option>${c}</option>`).join("");
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-let sav={};try{sav=JSON.parse(localStorage.getItem("m247")||"{}")}catch(e){}
-$("repo").value=sav.repo||"";$("tok").value=sav.tok||"";
-$("save").onclick=()=>{try{localStorage.setItem("m247",JSON.stringify({repo:$("repo").value.trim(),tok:$("tok").value.trim()}))}catch(e){}load()};
+let sv={};try{sv=JSON.parse(localStorage.getItem("m247")||"{}")}catch(e){}
+if(sv.repo)$("repo").value=sv.repo;if(sv.tok)$("tok").value=sv.tok;if(sv.src)$("src").value=sv.src;if(sv.cat)$("c").value=sv.cat;
+if(sv.tok)$("setup").open=false;else $("setup").open=true;
+const keep=()=>{try{localStorage.setItem("m247",JSON.stringify({repo:$("repo").value.trim(),tok:$("tok").value.trim(),src:$("src").value.trim(),cat:$("c").value}))}catch(e){}};
+$("save").onclick=()=>{keep();load();$("setup").open=false};
 const H=()=>({Authorization:"Bearer "+$("tok").value.trim(),Accept:"application/vnd.github+json"});
 const enc=s=>btoa(unescape(encodeURIComponent(s))),dec=s=>decodeURIComponent(escape(atob(s.replace(/\n/g,""))));
 const ytId=u=>{const m=String(u||"").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:""};
 async function gh(path,opt){const r=await fetch(API+$("repo").value.trim()+"/contents/"+path,{...opt,headers:{...H(),...(opt&&opt.headers)}});
-  if(r.status===404)return null;if(!r.ok)throw new Error("GitHub "+r.status+": "+((await r.json().catch(()=>({}))).message||""));return r.json()}
+ if(r.status===404)return null;if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(r.status===401?"Token चुकीचा किंवा संपलेला आहे":"GitHub "+r.status+": "+(j.message||""))}return r.json()}
 async function getManual(){const f=await gh("manual.json");return f?{sha:f.sha,items:JSON.parse(dec(f.content)||"[]")}:{sha:undefined,items:[]}}
-async function putManual(items,sha,msg){await gh("manual.json",{method:"PUT",body:JSON.stringify({message:msg,content:enc(JSON.stringify(items,null,1)),sha})})}
+const putManual=(items,sha,msg)=>gh("manual.json",{method:"PUT",body:JSON.stringify({message:msg,content:enc(JSON.stringify(items,null,1)),sha})});
+async function shrink(file,max=1280){const url=URL.createObjectURL(file);
+ const im=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=url});
+ const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
+ c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(url);return c.toDataURL("image/jpeg",.82).split(",")[1]}
+async function up(file,i){const path="uploads/"+Date.now()+"-"+i+".jpg";await gh(path,{method:"PUT",body:JSON.stringify({message:"upload photo",content:await shrink(file)})});return path}
+function preview(){const fs=[...($("im").files||[]),...($("ex").files||[])];$("pv").innerHTML=fs.map(f=>`<img src="${URL.createObjectURL(f)}" alt="">`).join("")}
+$("im").onchange=preview;$("ex").onchange=preview;
 async function load(){
-  if(!$("repo").value||!$("tok").value){$("list").textContent="वर repo आणि token टाका.";return}
-  try{const m=await getManual();$("list").innerHTML=m.items.length?m.items.map(n=>`<div class="item"><span>${esc(n.title)}</span><button data-d="${esc(n.id)}">🗑</button></div>`).join(""):"अजून काही नाही.";}
-  catch(e){$("list").textContent="त्रुटी: "+e.message}}
+ if(!$("repo").value||!$("tok").value){$("list").textContent="वर सेटअप भरा (repo आणि token).";return}
+ try{const m=await getManual();$("list").innerHTML=m.items.length?m.items.map(n=>`<div class="item"><span>${esc(n.title)}<br><small class="note">${esc(n.cat)}</small></span><span>${n.own?`<a href="a/${esc(n.id)}.html" target="_blank">पाहा</a>`:""}<button data-d="${esc(n.id)}" aria-label="काढा">🗑</button></span></div>`).join(""):"अजून काही नाही.";}
+ catch(e){$("list").textContent="त्रुटी: "+e.message}}
 $("list").onclick=async e=>{const d=e.target.dataset.d;if(!d||!confirm("ही बातमी काढायची?"))return;
-  try{const m=await getManual();await putManual(m.items.filter(n=>n.id!==d),m.sha,"remove story");load()}catch(x){alert(x.message)}};
-$("f").onsubmit=async e=>{e.preventDefault();const b=$("go"),g=$("msg");b.disabled=true;g.textContent="प्रसिद्ध होत आहे…";
-  try{
-    let img="";const file=$("im").files[0];
-    if(file){if(file.size>2e6)throw new Error("फोटो 2 MB पेक्षा मोठा आहे");
-      const b64=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(",")[1]);fr.readAsDataURL(file)});
-      img="uploads/"+Date.now()+"-"+file.name.replace(/[^\w.-]/g,"_");
-      await gh(img,{method:"PUT",body:JSON.stringify({message:"upload image",content:b64})})}
-    const y=ytId($("yt").value);
-    const item={id:"m"+Date.now(),title:$("t").value.trim(),summary:$("s").value.trim(),cat:$("c").value,source:$("src").value.trim()||"महाराष्ट्र 24/7",link:$("u").value.trim(),img,ts:Date.now()};
-    if(y){item.yt=y;item.img=item.img||"https://i.ytimg.com/vi/"+y+"/hqdefault.jpg"}
-    if(!item.link&&!y)item.link=location.origin+location.pathname.replace(/admin\.html$/,"");
-    const m=await getManual();await putManual([item,...m.items],m.sha,"add story");
-    $("f").reset();g.textContent="✔ प्रसिद्ध झाले. १–२ मिनिटांत साइटवर दिसेल.";load();
-  }catch(x){g.textContent="त्रुटी: "+x.message}b.disabled=false};
+ try{const m=await getManual();await putManual(m.items.filter(n=>n.id!==d),m.sha,"remove story");load()}catch(x){alert(x.message)}};
+$("f").onsubmit=async e=>{e.preventDefault();const b=$("go"),g=$("msg");
+ if(!$("tok").value){$("setup").open=true;g.textContent="आधी सेटअप भरा.";g.className="er";return}
+ b.disabled=true;g.className="note";keep();
+ try{
+  const files=[...($("im").files||[])],extra=[...($("ex").files||[])];let img="",photos=[],n=0;
+  for(const f of files){g.textContent="फोटो अपलोड होत आहे… "+(++n)+"/"+(files.length+extra.length);img=await up(f,n)}
+  for(const f of extra){g.textContent="फोटो अपलोड होत आहे… "+(++n)+"/"+(files.length+extra.length);photos.push(await up(f,n))}
+  const y=ytId($("yt").value),body=$("b").value.trim(),id="m"+Date.now();
+  if(y&&!img)img="https://i.ytimg.com/vi/"+y+"/hqdefault.jpg";
+  const item={id,own:true,title:$("t").value.trim(),summary:body.replace(/\s+/g," ").slice(0,170),body,cat:$("c").value,source:$("src").value.trim()||"महाराष्ट्र 24/7",link:"",img,photos,ts:Date.now()};
+  if(y)item.yt=y;
+  g.textContent="प्रसिद्ध होत आहे…";const m=await getManual();await putManual([item,...m.items],m.sha,"add story");
+  $("f").reset();$("pv").innerHTML="";if(sv.cat)$("c").value=sv.cat;$("src").value=JSON.parse(localStorage.getItem("m247")||"{}").src||"";
+  g.className="ok";g.innerHTML="✔ प्रसिद्ध झाले! १–२ मिनिटांत साइटवर दिसेल. <a href='a/"+id+".html' target='_blank'>बातमी पाहा</a>";load();
+ }catch(x){g.className="er";g.textContent="त्रुटी: "+x.message}b.disabled=false};
 load();
 </script></body></html>

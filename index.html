@@ -126,8 +126,9 @@ const FB="this.onerror=null;this.src='logo.png';this.style.objectFit='contain';t
 function card(n,i,hero){
  const im=ok(n.img)?`<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="${FB}">`:`<img src="logo.png" alt="" style="object-fit:contain;padding:10%">`;
  const th=n.yt?`<div class="th play" data-y="${esc(n.yt)}" data-t="${esc(n.title)}">${im}<span class="pb">▶</span></div>`:`<div class="th">${im}</div>`;
- const wa="https://wa.me/?text="+encodeURIComponent(n.title+" "+(n.link||location.href));
- return `<article class="card ${hero?"hero":""}" style="--i:${i%12}">${th}<div class="b"><span class="tag">${esc(n.cat)}</span><h3>${esc(n.title)}</h3>${n.summary?`<div class="sn">${esc(n.summary)}</div>`:""}<div class="meta">${esc(n.source)} · ${ago(n.ts)}</div><div class="ft"><a href="${esc(ok(n.link))}" target="_blank" rel="noopener">संपूर्ण बातमी →</a><a class="wa" href="${wa}" target="_blank" rel="noopener">शेअर</a></div></div></article>`}
+ const href=n.own?"a/"+encodeURIComponent(n.id)+".html":ok(n.link),tgt=n.own?"":' target="_blank" rel="noopener"';
+ const wa="https://wa.me/?text="+encodeURIComponent(n.title+" "+(n.own?new URL(href,location.href).href:(n.link||location.href)));
+ return `<article class="card ${hero?"hero":""}" style="--i:${i%12}">${th}<div class="b"><span class="tag">${esc(n.cat)}</span>${n.own?'<span class="tag" style="background:var(--bl);margin-left:6px">✍ आमची बातमी</span>':""}<h3>${esc(n.title)}</h3>${n.summary?`<div class="sn">${esc(n.summary)}</div>`:""}<div class="meta">${esc(n.source)} · ${ago(n.ts)}</div><div class="ft"><a href="${esc(href)}"${tgt}>संपूर्ण बातमी →</a><a class="wa" href="${wa}" target="_blank" rel="noopener">शेअर</a></div></div></article>`}
 function render(){
  if(view!=="news")return;
  if(!loaded){$("ng").innerHTML='<div class="sk"></div>'.repeat(6);return}
