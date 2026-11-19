@@ -2,7 +2,7 @@
 <html lang="mr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#12306b"><link rel="manifest" href="admin-manifest.webmanifest"><link rel="icon" href="favicon.png">
-<title>बातमी अपलोड – महाराष्ट्र 24/7</title>
+<title>बातमी अपलोड – महाराष्ट्र बातम्या 24x7</title>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f4f2ec;--card:#fff;--tx:#1b1b1f;--mu:#6b6b73;--br:#dcd7ca;--sf:#e8680c;--bl:#12306b}
@@ -23,7 +23,7 @@ button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:14px;bac
 .bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--br);padding:10px 14px}.bar button{max-width:640px;display:block;margin:0 auto}
 details summary{cursor:pointer;font-weight:600}
 </style></head><body>
-<header><img src="logo.png" alt=""><div><b>बातमी अपलोड</b><br><small>महाराष्ट्र 24/7 · फक्त संपादकांसाठी</small></div></header>
+<header><img src="logo.png" alt=""><div><b>बातमी अपलोड</b><br><small>महाराष्ट्र बातम्या 24x7 · फक्त संपादकांसाठी</small></div></header>
 <main>
 <details id="setup"><summary>⚙️ पहिल्यांदा सेटअप (एकदाच)</summary>
 <div class="box" style="margin-top:8px">
@@ -87,7 +87,7 @@ $("f").onsubmit=async e=>{e.preventDefault();const b=$("go"),g=$("msg");
   for(const f of extra){g.textContent="फोटो अपलोड होत आहे… "+(++n)+"/"+(files.length+extra.length);photos.push(await up(f,n))}
   const y=ytId($("yt").value),body=$("b").value.trim(),id="m"+Date.now();
   if(y&&!img)img="https://i.ytimg.com/vi/"+y+"/hqdefault.jpg";
-  const item={id,own:true,title:$("t").value.trim(),summary:body.replace(/\s+/g," ").slice(0,170),body,cat:$("c").value,source:$("src").value.trim()||"महाराष्ट्र 24/7",link:"",img,photos,ts:Date.now()};
+  const item={id,own:true,title:$("t").value.trim(),summary:body.replace(/\s+/g," ").slice(0,170),body,cat:$("c").value,source:$("src").value.trim()||"महाराष्ट्र बातम्या 24x7",link:"",img,photos,ts:Date.now()};
   if(y)item.yt=y;
   g.textContent="प्रसिद्ध होत आहे…";const m=await getManual();await putManual([item,...m.items],m.sha,"add story");
   $("f").reset();$("pv").innerHTML="";if(sv.cat)$("c").value=sv.cat;$("src").value=JSON.parse(localStorage.getItem("m247")||"{}").src||"";

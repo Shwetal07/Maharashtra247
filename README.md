@@ -1,4 +1,4 @@
-# Maharashtra 24/7 – setup (free, no server needed)
+# Maharashtra Batmya 24 by 7 – setup (free, no server needed)
 1. Create a GitHub account → New repository (name: maharashtra247) → upload all files in this folder (keep the .github folder).
 2. Repository → Settings → Pages → Source: "Deploy from a branch" → main / root.
 3. Repository → Actions tab → "Update news" → Run workflow. After ~1 minute news.json appears; it then refreshes every 15 minutes.
