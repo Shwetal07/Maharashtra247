@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Sitemap: https://shwetal07.github.io/Maharashtra247/sitemap.xml
